@@ -1,0 +1,208 @@
+//PRIMERO SE CREA UNA CLASE DE Nodo EN LA QUE SE DECLARAN LAS VARIABLES:
+
+INICIO COMO NODO YA QUE ES UN PUNTERO
+VALOR COMO OBJETO YA QUE NOS DEVUELVE EL VALOR DEL OBJETO DE LA LISTA
+SIGUIENTE COMO NODO YA QUE ES EL PASO AL SIGUIENTE NODO
+
+
+
+package ejercicios_listas;
+
+public class Nodo {
+	Nodo inicio;
+	Object valor;
+	Nodo siguiente;
+	
+	
+	//CONSTRUCTOR CON VALOR COMO PARÁMETRO  Y SIGUIENTE COMO NULL YA QUE ES EL LÍMITE DE LA LISTA
+  
+	public Nodo(Object valor) {
+		this.valor=valor;
+		this.siguiente=null;
+		}
+	
+  //ESTE MÉDTODO NOS VA A SERVIR PARA OBTENER EL VALOR DEL OBJETO DE LA LISTA
+  
+	public Object ObtenerValor() {
+		return valor;
+	}
+  
+  //LAS LISTAS ESTÁN FORMADOS POR NODOS QUE SE ENLAZAN A TRAVÉS DE UN NODO LLAMADO SIGUIENTE.
+  //CUANDO SE CREA UN NODO SIN ENLAZAR ESTE ES INDEPENDIENTE, PARA PODER ENLAZARLO CON EL SIGUIENTE NODO SE NECESITA ESTA FUNCIÓN EN LA QUE SE IGUALA
+  //SIGUIENTE CON NUEVO QUE ES EL NUEVO NODO
+  
+	public void enlazarSiguiente(Nodo nuevo) {
+		siguiente=nuevo;
+		}
+	
+  //ESTE MÉTODO NOS SIRVE PARA AVANZAR AL SIGUIENTE NODO A TRAVÉS DEL NODO SIGUIENTE QUE ES EL ENLACE ENTRE LOS NODOS
+	public Nodo obtenerSiguiente() {
+		
+		return siguiente;
+		}
+		
+	}
+	
+
+
+
+//CREAMOS UNA CLASE LLAMADA LISTAS EN LA QUE CREAREMOS LOS MÉTODOS Y LA LISTA CON SUS ELEMENTOS
+
+package ejercicios_listas;
+
+import java.time.temporal.Temporal;
+import java.util.Scanner;
+
+public class listaEnlazada {
+static Scanner sc=new Scanner(System.in);
+static boolean estaVacia;
+Nodo inicio;
+Nodo nuevo;
+int tamaño;
+
+//CREAMOS UN CONSTRUCTOR SIN PARÁMETROS EN EL QUE INICIO ES NULL YA QUE INICIALMENTE LA LISTA ESTÁ VACÍA Y TAMAÑO ES 0 YA QUE INICIALMENTE LA LISTA ESTÁ VACÍA	
+	public listaEnlazada() {
+		this.inicio=null;
+		this.tamaño=0;
+	}
+//ESTE MÉTODO NOS VA A SERVIR PARA AÑADIR ELEMENTOS EN LA PRIMERA POSICIÓN, PARA ELLO SE CREA UN NODO TEMPORAL QUE SE ASOCIA AL INICIO,
+//SE CREA UN NUEVO NODO QUE ES EL QUE VA A TENER EL VALOR QUE QUEREMOS DAR Y LUEGO SE ENLAZA ESTE NUEVO NODO CON EL TEMPORAL (YA QUE EL TEMPORAL ES = A INICIO)
+
+	public void addPrimero(Object valor) {
+		if(inicio==null) {
+			inicio=new Nodo(valor);
+		}else {
+			Nodo temporal=inicio;
+			nuevo=new Nodo(valor);
+			nuevo.enlazarSiguiente(temporal);
+			inicio=nuevo;
+		}
+		tamaño++;
+	}
+	
+  //CON ESTE MÉTODO SE PUEDE VERIFICAR SI LA LISTA ESTÁ VACÍA O CONTIENE ELEMENTOS A TRRAVÉS DE UN BOOLEANOS PREGUNTAMOS SI ES NULL O NO
+	public boolean EstaVacia() {
+		if(inicio==null) {
+			return estaVacia=true;
+		}else {
+			return estaVacia=false;
+		}
+		
+	}
+
+//CON ESTE MÉTODO PODEMOS SABER EL TAMAÑO DE LA LISTA
+	public int tamaño() {
+		
+		return tamaño;
+	}
+  
+  //CON ESTE MÉTODO PODEMOS OBTENER EL CONTENIDO DE UNA DETERMINADA POSICIÓN DE LA LISTA,
+  //USAMOS UN CONTADOR QUE ES EL QUE NOS SITÚA CON WHILE EN LA POSICIÓN AUMENTAMOS EL CONTADOR PARA SALIR DEL BUCLE Y QUE AVANCE HASTA
+  //QUE LLEGUE A LA POSICIÓN QUE QUEREMOS Y AVANZAMOS EN TEMPORAL HASTA LA POSICIÓN Y FINALMENTE FUERA DEL CICLO NOS MUESTRA EL VALOR.
+	public Object obtener(int posicion) {
+		int contador=0;
+		Nodo temporal=inicio;
+		while(contador<posicion) {
+			temporal=temporal.obtenerSiguiente();
+			contador++;
+		}
+		return temporal.ObtenerValor();
+	}
+  
+  //ESTE MÉTODO SIRVE PARA ELIMINAR EL PRIMER ELEMENTO, SE SALTA AL SIGUIENTE ELEMENTO Y EL INICIO SE ELIMINA AUTOMÁTICAMENTE, SE REDUCE EL TAMAÑO DE LA LISTA
+  
+	public void EliminarPrimero() {
+		inicio=inicio.obtenerSiguiente();
+		tamaño--;
+	}
+  
+  //ESTE MÉTODO SIRVE PARA MOSTRAR EL CONTENIDO DE LA LISTA, RECORRE LA LISTA HASTA QUE LLEGA A NULL A TRAVÉS DE UN NODO TEMPORAL QUE SE IGUALA A INICIO 
+  //CON EL STRING RESU VAMOS ACUMULANDO LA FUNCIÓN OBTENER VALOR PARA PODER LEER LOS RESULTADOS DE LA LISTA. 
+  //FINALMENTE LEEMOS EL CONTENIDO CON RESU FUERA DEL BUCLE WHILE ( EL BUCLE WHILE TERMINA CUANDO TEMPORAL ES NULL QUE ES EL FINAL DE LA LISTA)
+	public String toString() {
+		String resu="";
+		Nodo temporal=inicio;
+		while(temporal!=null) {
+			resu+=temporal.ObtenerValor();
+			temporal=temporal.obtenerSiguiente();
+			
+		}
+		return resu;
+	}
+	
+  //PODEMOS ELIMINAR UN ELEMENTO DE UNA POSICIÓN DETERMINADA
+  //EN CASO QUE LA POSICIÓN SEA 0 SE SALTARÁ EL INICIO Y ASÍ SE ELIMINA EL ANTERIOR INICIO AUTOMÁTICAMENTE
+  //SI LA POSICIÓN ES != DE 0 EN ESE CASO SE CREA UN NODO TEMPORAL QUE SE IGUALA A 0, 
+  //MIENTRAS QUE CONTADOR SEA < A POSICION-1 (YA QUE QUEREMOS LA POSICIÓN ANTERIOR PARA PODERLA ENLAZAR CON LA SIGUIENTE A LA QUE QUEREMOS ELIMINAR),
+  //AVANZAMOS CON TEMPORAL HASTA QUE LLEGUE A POSICIÓN -1 QUE ES EL NODO ANTERIOR
+  //SI TEMPORAL LLEGA A SU TOPE QUE ES NULL NO SE PUEDE REALIZAR LA OPERACIÓN (ASÍ EVITAMOS LA EXCEPCIÓN POR SALIRNOS DE LA LISTA)
+  //SINO AUMENTAMOS EL CONTADOR Y FUERA DEL WHILE TEMPORAL SE ENLAZA CON TEMPORAL INCREMENTADO DOS VECES YA QUE NOS SALTAMOS LA POSICIÓN QUE QUEREMOS ELIMINAR
+  
+	public void eliminarElemento(int posicion) {
+		if(posicion==0) {
+			inicio=inicio.obtenerSiguiente();
+		}else {
+			
+			Nodo temporal=inicio;
+			int contador=0;
+			while(contador<posicion-1) {
+				temporal=temporal.obtenerSiguiente();
+				if(temporal.obtenerSiguiente()==null) {
+					System.out.println();
+					System.out.println("No se puede realizar la operación porque ha llegado al fin de la lista");
+					System.exit(0);
+				}else {
+					contador++;
+				
+				}
+			}
+			temporal.enlazarSiguiente(temporal.obtenerSiguiente().obtenerSiguiente());
+		}
+		tamaño--;
+	}
+  
+  //PARA CORTAR UNA LISTA TENEMOS QUE CREAR UN NODO TEMPORAL Y ASOCIARLO AL INICIO
+  //CREAMOS UN CONTADOR QUE EN BUCLE WHILE SE INCREMENTARÁ MIENTRAS QUE SEA MENOR A LA ANTERIOR POSICIÓN (POSICION-1)
+  //MIENTRAS QUE SEA MENOR A POSICIÓN -1 TEMPORAL AVANZARÁ AL SIGUIENTE Y EL CONTADOR SE INCREMENTA
+  //FUERA DEL WHILE TEMPORAL SE ENLAZA CON NULL Y EL RESTO DE LA LISTA SE ELIMINA
+  
+	public void cortar(int posicion) {
+		int contador=0;
+		Nodo temporal=inicio;
+		while(contador<posicion-1) {
+			temporal=temporal.obtenerSiguiente();
+			contador++;
+		}
+		temporal.enlazarSiguiente(null);
+	}
+  
+  //EN EL MAIN CREAMOS LA LISTA CON EL MÉTODO ADDPRIMERO Y SE VAN APLICANDO EL RESTO DE MÉTODOS
+	public static void main(String[]args) {
+		listaEnlazada lista=new listaEnlazada();
+		System.out.println("¿Está vacía la lista? "+lista.EstaVacia());
+		lista.addPrimero("Hola");//este es el final de la lista
+		lista.addPrimero("Mundo");
+		lista.addPrimero("java");
+		lista.addPrimero("java");
+		lista.addPrimero("java");//este es el inicio
+		
+		System.out.println("¿Está vacía la lista? "+lista.EstaVacia());
+		System.out.println("El contenido de la lista es= "+lista.toString());
+		System.out.println("El primer elemento es= "+lista.obtener(0));
+		System.out.println("El último elemento es= "+lista.obtener(2));
+		System.out.println("El tamaño de esta lista es= "+lista.tamaño());
+		lista.EliminarPrimero();
+		System.out.print("La lista resultante tras los cambios es= "+lista.toString());
+		
+		lista.eliminarElemento(2);
+		System.out.println();
+		System.out.println("La lista tras la eliminación se queda así "+lista.toString());
+		
+		System.out.println("Indica desde qué posición quieres cortar la lista");
+		int posicion=sc.nextInt();
+		lista.cortar(posicion);
+		System.out.println("La nueva lista es= "+lista.toString());
+		
+		
+	}
+}
