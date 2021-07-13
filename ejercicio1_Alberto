@@ -33,6 +33,8 @@ Nodo inicio;
 static boolean estaVacio;
 static int tamaño=0;
 static int ultimaPosicion;
+static int valorPosicion0;
+static int valorPosicion1;
 
 
 	public ListasEjercicio1() {
@@ -222,6 +224,24 @@ static int ultimaPosicion;
 		
 		
 	}
+	public void cambiarOrdenDosPrimeros() {
+		Nodo temporal=inicio;
+		inicio=inicio.Siguiente();
+		temporal.siguiente=inicio.siguiente;
+		inicio.siguiente=temporal;
+	}
+	public boolean ordenadoOno() {
+		Object anterior=inicio.valor;
+		Nodo temporal=inicio.siguiente;
+		boolean ordenado=true;
+		if((int)anterior<(int)temporal.valor) {
+			return ordenado;
+			
+		}else {
+			return ordenado=false;
+		}
+		
+	}
 	public static void main(String[] args) {
 		ListasEjercicio1 Lista=new ListasEjercicio1();
 		Lista.insertarDatosTabla(104);
@@ -268,7 +288,10 @@ static int ultimaPosicion;
 		System.out.println("Vamos a insertar un elemento en la última posición");
 		Lista.insertarElementoUltimo(4);
 		System.out.println("El resultado total de la lista tras la actualización es de = "+Lista.toString());
-		
+		System.out.println("Vamos a cambiar los valores de las posiciones 0 y 1 ");
+		Lista.cambiarOrdenDosPrimeros();
+		System.out.println("El resultado total de la lista tras la actualización es de = "+Lista.toString());
+		System.out.println("A continuación vemos si la lista está ordenada en los dos primeros elementos [true si sí y false si no] = "+Lista.ordenadoOno());
 	}
 
 }
