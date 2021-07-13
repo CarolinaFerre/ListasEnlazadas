@@ -1,0 +1,143 @@
+package ejercicio_lista1;
+
+
+
+public class ListasEjercicio1 {
+Nodo inicio;
+static boolean estaVacio;
+static int tamaño=0;
+	public ListasEjercicio1() {
+		this.inicio=null;
+	}
+	public void insertarDatosTabla(Object valor){
+		if(inicio==null) {
+			inicio=new Nodo(valor);
+		}else {
+			Nodo temporal=inicio;
+			Nodo nuevo=new Nodo(valor);
+			nuevo.enlazarNodos(temporal);
+			inicio=nuevo;
+		}
+		
+		tamaño++;
+	}
+	public boolean estaVacio() {
+		if(inicio==null) {
+			return estaVacio=true;
+		}else {
+			return estaVacio=false;
+		}
+	}
+	public String toString() {
+		String resu="";
+		Nodo temporal=inicio;
+		int contador=0;
+		while(temporal!=null) {
+			resu+=temporal.obtenerValor();
+			temporal=temporal.Siguiente();
+			contador++;
+			
+		}
+		return resu;
+	}
+	public void eliminarNumero(int posicion) {
+		int contador=0;
+		Nodo temporal=inicio;
+		while(contador<posicion-1) {
+			temporal=temporal.Siguiente();
+			contador++;
+		}
+		temporal.enlazarNodos(temporal.Siguiente().Siguiente());
+	}
+	public void añadirNodo(int posicion,Object valor) {
+		Nodo temporal=inicio;
+		int contador=0;
+		
+		while(contador<posicion-1) {
+			temporal=temporal.Siguiente();
+			contador++;
+		}
+		Nodo nuevo=new Nodo(valor);
+		Nodo nuevo2=temporal.Siguiente();
+		temporal.enlazarNodos(nuevo);
+		nuevo.enlazarNodos(nuevo2);
+		
+		tamaño++;
+	}
+	public void cambiarValor(int posicion,Object valor) {
+		Nodo temporal=inicio;
+		int contador=0;
+		while(contador<posicion) {
+			temporal=temporal.Siguiente();
+			temporal.valor=65;
+			contador++;
+		}
+		Nodo nuevo2=temporal.Siguiente();
+		temporal.enlazarNodos(nuevo2);
+	}
+	public void borrarPrimer() {
+		inicio=inicio.Siguiente();
+		tamaño--;
+	}
+	public int verTamañoDeLista() {
+		Nodo temporal=inicio;
+		int contador=0;
+		while(temporal!=null) {
+			temporal=temporal.Siguiente();
+			contador++;
+		}
+		return contador;
+	}
+	public void ValorPosicion(int posicion) {
+		Nodo temporal=inicio;
+		int contador=0;
+		
+		if(temporal==null) {
+			System.out.println("No se puede mostrar valor ya que la posición indicada se excede del tamaño de la lista");
+			System.exit(0);
+		}else {
+			while(contador<posicion) {
+				temporal=temporal.Siguiente();
+				contador++;
+			}
+			System.out.println(temporal.obtenerValor());
+		}
+	}
+	public void eliminarPrimerElemento() {
+		
+		if(inicio==null) {
+			System.out.println("No se puede realizar la operación ya que la lista está vacía");
+		}else {
+			inicio=inicio.siguiente;
+			tamaño--;
+		}
+		
+	}
+	public static void main(String[] args) {
+		ListasEjercicio1 Lista=new ListasEjercicio1();
+		Lista.insertarDatosTabla(104);
+		Lista.insertarDatosTabla(56);
+		Lista.insertarDatosTabla(34);
+		Lista.insertarDatosTabla(15);
+		
+		
+		System.out.println("La lista que hemos creado es= "+Lista.toString());
+		System.out.println("Vamos a eliminar el elemento 34");
+		Lista.eliminarNumero(1);
+		System.out.println("Tras el cambio la lista es el siguiente= "+Lista.toString());
+		System.out.println("El resultado tras el cambio de la lista es el siguiente= "+Lista.toString());
+		System.out.println("Ahora vamos a cambiar el valor del nodo 56 por el valor 65");
+		Lista.cambiarValor(2,65);
+		System.out.println("El resultado tras el cambio de la lista es el siguiente= "+Lista.toString());
+		System.out.println("Ahora vamos a borrar el primer elemento");
+		Lista.borrarPrimer();
+		System.out.println("El resultado tras el cambio de la lista es el siguiente= "+Lista.toString());
+		System.out.println("El tamaño de la lista tras los cambios es de = "+Lista.verTamañoDeLista()+" elementos");
+		System.out.println("El valor de la posición 2 es= ");
+		Lista.ValorPosicion(0);
+		System.out.println("Se va a eliminar el primer elemento de la lista...");
+		Lista.eliminarPrimerElemento();
+		System.out.println("El resultado tras el cambio de la lista es el siguiente= "+Lista.toString());
+	}
+
+}
