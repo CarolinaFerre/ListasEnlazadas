@@ -1,3 +1,85 @@
+/*EJERCICIOS SOBRE ESTRUCTURAS DINÁMICAS  I
+                                  
+1. Dada la siguiente declaración de lista enlazada:
+
+public class NodoLista {
+   int dato;
+   NodoLista sig;
+   public NodoLista (int x, NodoLista n) {
+     dato=x;
+     sig=n;
+   }
+}
+public class Lista {
+   NodoLista inicio;
+   Lista () {
+    inicio = null;
+   }
+}
+Y los objetos
+
+Lista milista;
+Nodolista paux;
+
+Tenemos siguiente lista encadenada y la posición de los objetos Lista que señalan a distintas posiciones de la lista.
+
+		            paux		
+milista.inicio			
+
+
+
+
+REALIZAR LAS SIGUIENTES OPERACIONES
+
+A) Borrar el nodo de valor 34.
+
+        milista.inicio.sig = paux.sig;  paux = null;
+
+ B) Una vez borrado el anterior nodo, insertar entre los nodos con valor 15 y 56 un nuevo nodo que almacene el valor 54.            
+
+          paux = new Nodo(56, milista.inicio.sig);
+     milista.inicio.sig = paux;
+
+C) Cambiar el valor del nodo 56 por 65.                    
+      // Suponemos que paux sigue apuntando al segundo elemento
+	paux = paux.siguiente;
+      paux.valor = 65;   
+
+2. Tenemos señalada mediante el objeto milista otra  lista encadenada  de números enteros con valores y longitud indeterminada, indicar  las instrucciones necesarias para realizar la siguientes operaciones:
+
+Lista milista;  
+
+  NOTA:  Para simplificar los algoritmos,  suponer que la lista tiene como mínimo  un par de  elementos;
+
+A) Borrar el primer elemento de la lista.
+
+
+
+B) Cambiar el orden de los dos primeros elementos.
+
+
+
+	
+C) Borrar el último elemento de la lista.
+
+
+    
+D) Modificar el contenido de los elementos de la lista cuyo valor sea negativo asignándoles el valor cero.
+
+
+E) Calcular la suma de todos los elemento de la lista que sean mayores que cero.
+
+
+F) Añadir un último elemento que almacene el valor 23
+
+     
+G) Recorrer la lista e indicar si está o no está ordenada.
+
+*/
+
+
+
+
 package ejercicio_lista1;
 
 public class Nodo {
