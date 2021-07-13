@@ -1,5 +1,32 @@
 package ejercicio_lista1;
 
+public class Nodo {
+Nodo inicio;
+Object valor;
+Nodo siguiente;
+
+	public Nodo(Object valor) {
+		this.valor=valor;
+		this.siguiente=null;
+	}
+	
+	public Object obtenerValor() {
+		return valor;
+	}
+	public Nodo Siguiente() {
+		return siguiente;
+	}
+	public void enlazarNodos(Nodo nuevo) {
+		siguiente=nuevo;
+	}
+}
+
+
+
+//************************************
+
+package ejercicio_lista1;
+
 
 
 public class ListasEjercicio1 {
