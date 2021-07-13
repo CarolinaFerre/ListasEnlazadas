@@ -165,6 +165,11 @@ static int tamaño=0;
 		System.out.println("Se va a eliminar el primer elemento de la lista...");
 		Lista.eliminarPrimerElemento();
 		System.out.println("El resultado tras el cambio de la lista es el siguiente= "+Lista.toString());
+		System.out.println("Ahora vamos a insertar datos en la tabla, ya que actualmente sólo tiene un objeto");
+		Lista.insertarDatosTabla(30);
+		Lista.insertarDatosTabla(45);
+		Lista.insertarDatosTabla(89);
+		System.out.println("El resultado total de la lista tras la actualización es de = "+Lista.toString());
 	}
 
 }
