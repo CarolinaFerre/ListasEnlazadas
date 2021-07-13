@@ -24,7 +24,6 @@ Nodo siguiente;
 
 
 //************************************
-
 package ejercicio_lista1;
 
 
@@ -40,7 +39,7 @@ static int tamaño=0;
 	}
 	public void insertarDatosTabla(Object valor){
 		if(inicio==null) {
-			inicio=new Nodo(valor);
+	 		inicio=new Nodo(valor);
 		}else {
 			Nodo temporal=inicio;
 			Nodo nuevo=new Nodo(valor);
@@ -179,6 +178,22 @@ static int tamaño=0;
 			contador++;
 		}
 	}
+	public int sumaElementos() {
+		Nodo temporal=inicio;
+		int contador=0;
+		int suma=0;
+		int valorsuma=0;
+		while(temporal!=null) {
+			
+			valorsuma=(int)temporal.obtenerValor();
+			suma+=valorsuma;
+			temporal=temporal.Siguiente();
+			contador++;
+			
+		}
+		return suma;
+		
+	}
 	public static void main(String[] args) {
 		ListasEjercicio1 Lista=new ListasEjercicio1();
 		Lista.insertarDatosTabla(104);
@@ -218,7 +233,9 @@ static int tamaño=0;
 		Lista.insertarDatosTabla(-9);
 		System.out.println("El resultado total de la lista tras la actualización es de = "+Lista.toString());
 		Lista.modificarValoresNegativos(Lista);
-		
+		System.out.println("Ahora vamos a calcula la suma de los elementos de la lista");
+		System.out.println("El resultado de la suma es= "+Lista.sumaElementos());
+		System.out.println("El resultado total de la lista tras la actualización es de = "+Lista.toString());
 	}
 
 }
