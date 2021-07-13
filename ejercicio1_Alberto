@@ -32,6 +32,7 @@ public class ListasEjercicio1 {
 Nodo inicio;
 static boolean estaVacio;
 static int tamaño=0;
+static int ultimaPosicion;
 
 
 	public ListasEjercicio1() {
@@ -194,6 +195,33 @@ static int tamaño=0;
 		return suma;
 		
 	}
+	public int UltimaPosicionLista() {
+		Nodo temporal=inicio;
+		ultimaPosicion=0;
+		int contador=0;
+		while(temporal!=null) {
+			temporal=temporal.Siguiente();
+			contador++;
+		}
+		ultimaPosicion=contador-1;
+		return ultimaPosicion;
+	}
+	public void insertarElementoUltimo(Object valor) {
+		Nodo temporal=inicio;
+		int contador=0;
+		
+		Nodo nuevo2=null;
+		while(contador<ultimaPosicion) {
+			
+			temporal=temporal.Siguiente();
+			contador++;
+		}
+		Nodo nuevo=new Nodo (valor);
+		temporal.enlazarNodos(nuevo);
+		nuevo.enlazarNodos(nuevo2);
+		
+		
+	}
 	public static void main(String[] args) {
 		ListasEjercicio1 Lista=new ListasEjercicio1();
 		Lista.insertarDatosTabla(104);
@@ -236,7 +264,11 @@ static int tamaño=0;
 		System.out.println("Ahora vamos a calcula la suma de los elementos de la lista");
 		System.out.println("El resultado de la suma es= "+Lista.sumaElementos());
 		System.out.println("El resultado total de la lista tras la actualización es de = "+Lista.toString());
+		System.out.println("Ahora vamos a ver la última posición de la lista "+Lista.UltimaPosicionLista());
+		System.out.println("Vamos a insertar un elemento en la última posición");
+		Lista.insertarElementoUltimo(4);
+		System.out.println("El resultado total de la lista tras la actualización es de = "+Lista.toString());
+		
 	}
 
 }
-
