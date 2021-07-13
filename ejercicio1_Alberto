@@ -33,6 +33,8 @@ public class ListasEjercicio1 {
 Nodo inicio;
 static boolean estaVacio;
 static int tamaño=0;
+
+
 	public ListasEjercicio1() {
 		this.inicio=null;
 	}
@@ -108,12 +110,12 @@ static int tamaño=0;
 	}
 	public int verTamañoDeLista() {
 		Nodo temporal=inicio;
-		int contador=0;
+		int tamañoLista=0;
 		while(temporal!=null) {
 			temporal=temporal.Siguiente();
-			contador++;
+			tamañoLista++;
 		}
-		return contador;
+		return tamañoLista;
 	}
 	public void ValorPosicion(int posicion) {
 		Nodo temporal=inicio;
@@ -139,6 +141,43 @@ static int tamaño=0;
 			tamaño--;
 		}
 		
+	}
+	public void eliminarUltimoElemento() {
+		int contador=0;
+		Nodo temporal=inicio;
+		int valor1;
+		int valor2;
+		int contadornuevo=0;
+		Nodo nuevo = null;
+		if(inicio==null) {
+			System.out.println("No se puede realizar la operación ya que la lista está vacía");
+		}else {
+			
+			while(contador<2) {
+				temporal=temporal.Siguiente();
+				contador++;
+			}
+			temporal.enlazarNodos(temporal.Siguiente().Siguiente());
+			tamaño--;
+		}
+	}
+	public void modificarValoresNegativos(Object valor) {
+		Nodo temporal=inicio;
+		int contador=0;
+		int resu;
+		while(temporal!=null) {
+			
+			
+			if((int)temporal.obtenerValor()<0) {
+				System.out.println("0");
+				temporal=temporal.Siguiente();
+			}else {
+				
+				System.out.println(temporal.obtenerValor());
+				temporal=temporal.Siguiente();
+			}
+			contador++;
+		}
 	}
 	public static void main(String[] args) {
 		ListasEjercicio1 Lista=new ListasEjercicio1();
@@ -170,6 +209,17 @@ static int tamaño=0;
 		Lista.insertarDatosTabla(45);
 		Lista.insertarDatosTabla(89);
 		System.out.println("El resultado total de la lista tras la actualización es de = "+Lista.toString());
+		System.out.println("Primero vamos a ver el tamaño que tiene la nueva lista");
+		System.out.println(Lista.verTamañoDeLista());
+		System.out.println("Ahora vamos a eliminar el último elemento de la lista");
+		Lista.eliminarUltimoElemento();
+		System.out.println("El resultado total de la lista tras la actualización es de = "+Lista.toString());
+		System.out.println("Ahora vamos a añadir un valor negativo a la lista");
+		Lista.insertarDatosTabla(-9);
+		System.out.println("El resultado total de la lista tras la actualización es de = "+Lista.toString());
+		Lista.modificarValoresNegativos(Lista);
+		
 	}
 
 }
+
