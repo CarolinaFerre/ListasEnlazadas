@@ -1,0 +1,90 @@
+/* 3.1 Queremos introducir una serie de cadenas (String) indeterminadas indicando el final de la entrada con una cadena que termina con la palabra FIN.  Mostrar las cadenas en orden inverso al introducido.  Utilizar para ello una lista encadenada que almacene String y manejarla como una pila de cadenas.
+
+ 
+Ejemplo de ejecución:
+Entrada de datos:
+
+Hola D. Pepito
+Hola D. José
+Paso usted por mi casa
+Por su casa yo pase
+FIN
+
+Resultado del programa
+
+Por su casa yo pase
+Paso usted por mi casa
+Hola D. José
+Hola D. Pepito.
+*/
+
+
+//CLASE NODO
+
+
+public class Nodo {
+String valor;
+Nodo siguiente;
+
+	public Nodo() {
+		this.siguiente=null;
+		this.valor=valor;
+	}
+
+}
+
+
+//CLASE LISTA_CADENA
+
+import java.util.Scanner;
+
+
+public class lista_cadena_String {
+String valor;
+Nodo inicio;
+Nodo siguiente;
+static Scanner sc=new Scanner(System.in);
+	public lista_cadena_String() {
+		this.valor=valor;
+		this.inicio=null;
+		this.siguiente=siguiente;
+	}
+	public void anadirValor(String valor) {
+		Nodo temporal=inicio;
+		Nodo nuevo =new Nodo();
+		nuevo.valor=valor;
+		nuevo.siguiente=inicio;
+		inicio=nuevo;
+		
+		}
+		
+	
+	public void recorrerLista(String valor) {
+		Nodo temporal=inicio;
+		int contador=0;
+		while(temporal!=null) {
+			
+			System.out.print(temporal.valor);
+			temporal=temporal.siguiente;
+			contador++;
+		}
+	}
+
+
+	public static void main(String[] args) {
+		lista_cadena_String lista=new lista_cadena_String();
+		int contador=0;
+		String fin="FIN";
+		String valor="";
+		valor=sc.nextLine();
+		while(!valor.equals(fin)) {
+			lista.anadirValor(valor);
+			valor=sc.nextLine();
+		}
+		
+		
+		lista.recorrerLista(valor);
+
+	}
+
+}
