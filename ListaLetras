@@ -1,0 +1,91 @@
+/*Queremos definir la clase Listaletras donde cada uno de los nodos almacena una letra. Codificar las definiciones de nodos y lista adecuadas.  En esta clase queremos tener un constructor que me permita crear una lista a partir de un String.  Codificar este constructor sin utilizar métodos auxiliares.
+
+Ejemplo:
+ListaLetra milista = new ListaLetra("Hola Eva");
+
+Generaría la lista:
+           milista → H → o → l → a → _ → E → v → a
+*/
+
+
+
+
+//CLASE NODO
+
+package ejercicioLista;
+
+public class Nodo {
+Nodo inicio;
+Nodo siguiente;
+char letra;
+	public Nodo() {
+		
+		this.siguiente=null;
+	}
+
+	public Nodo obtenerSiguiente() {
+		return siguiente;
+		
+	}
+	public void enlazar(Nodo nuevo) {
+		siguiente=nuevo;
+		
+	}
+
+}
+
+
+
+
+
+//CLASE LISTASLETRAS
+
+package ejercicioLista;
+
+public class ListasLetras {
+Nodo inicio;
+Nodo siguiente;
+char letra;
+static String palabra;
+
+	public ListasLetras(String palabra) {
+		this.inicio=null;
+		this.siguiente=siguiente;
+		this.palabra=palabra;
+		
+		
+	}
+	public void AñadirCaracter() {
+		
+		
+		for(int i=palabra.length()-1;i>=0;i--) {
+			Nodo temporal=new Nodo();
+			temporal.letra=palabra.charAt(i);
+			temporal.siguiente=inicio;
+			inicio=temporal;
+			
+			}
+		}
+		
+			
+		
+		public void recorrerLista() {
+			Nodo temporal=inicio;
+			int contador=0;
+			while(temporal!=null) {
+				
+				System.out.print(temporal.letra);
+				temporal=temporal.obtenerSiguiente();
+				contador++;
+			}
+		}
+	
+	public static void main(String[] args) {
+		palabra="Hola Mundo";
+		ListasLetras lista=new ListasLetras(palabra);
+		lista.AñadirCaracter();
+		lista.recorrerLista();
+		
+	}
+
+}
