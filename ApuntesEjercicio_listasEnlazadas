@@ -21,7 +21,7 @@ public class Nodo {
 		this.siguiente=null;
 		}
 	
-  //ESTE MÉDTODO NOS VA A SERVIR PARA OBTENER EL VALOR DEL OBJETO DE LA LISTA
+  //ESTE MÉTODO NOS VA A SERVIR PARA OBTENER EL VALOR DEL OBJETO DE LA LISTA
   
 	public Object ObtenerValor() {
 		return valor;
